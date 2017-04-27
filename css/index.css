@@ -1,0 +1,285 @@
+@charset "UTF-8";
+* {
+  font-family: 'PingFang SC',"微软雅黑",arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: none;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-spacing: 0;
+  outline: none; }
+
+::-moz-placeholder {
+  color: #b3b3b3;
+  font-size: 1em; }
+
+:-ms-input-placeholder {
+  color: #b3b3b3;
+  font-size: 1em; }
+
+::-webkit-input-placeholder {
+  color: #b3b3b3;
+  font-size: 1em; }
+
+img {
+  -webkit-touch-callout: none;
+  display: block; }
+
+textarea {
+  resize: none; }
+
+input[type="checkbox"] {
+  -webkit-appearance: none; }
+
+ul, li {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+.touch-scroll {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; }
+
+.text-auto-return {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-all; }
+
+.text-no-return {
+  white-space: nowrap; }
+
+.text-out-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
+
+/**
+ * 简单实用flex模型
+ * 使用前请先理解主轴概念  参考： http://www.jianshu.com/p/cd69906d7703 
+ * 比如: class="flex-row flex-main-center flex-cross-end" 
+ *     代表横向排列的盒子，然后里面的内容在主轴（横向）上居中，在竖向上底部对齐
+ *      class="flex-col flex-main-center flex-cross-start" 
+ *     代表竖向排列的盒子，然后里面的内容在主轴（竖向）上居中，在横向上顶部对齐
+ */
+/**
+  * 隐藏dom
+  */
+.flex-hide {
+  display: none !important; }
+
+.flexBox, .flex-row, .cg-list li, .flex-col {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+/**
+ * 主轴为横向排列的
+ */
+.flex-row, .cg-list li {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+
+/**
+ * 主轴为竖向排列的
+ */
+.flex-col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+/**
+ * 主轴元素排列为左对齐
+ */
+.flex-main-start {
+  -webkit-box-pack: start;
+  -moz-flex-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  justify-content: flex-start; }
+
+/**
+ * 主轴元素排列为居中
+ */
+.flex-main-center, .cg-list li {
+  -webkit-box-pack: center;
+  -moz-flex-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+
+/**
+ * 主轴元素排列为右对齐
+ */
+.flex-main-end {
+  -webkit-box-pack: end;
+  -moz-flex-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end; }
+
+/**
+ * 主轴元素排列为两端对齐
+ */
+.flex-main-between {
+  -webkit-box-pack: space-between;
+  -moz-flex-pack: space-between;
+  -ms-flex-pack: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  justify-content: space-between; }
+
+/**
+ * 主轴元素排列为平均分布
+ */
+.flex-main-arount {
+  -webkit-box-pack: space-around;
+  -moz-flex-pack: space-around;
+  -ms-flex-pack: space-around;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  justify-content: space-around; }
+
+.flex-cross-start {
+  -webkit-box-align: start;
+  -moz-flex-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  align-items: flex-start; }
+
+/**
+ * 以下为设定另外一个轴的对齐方式
+ */
+.flex-cross-center, .cg-list li {
+  -webkit-box-align: center;
+  -moz-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.flex-cross-end {
+  -webkit-box-align: end;
+  -moz-flex-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  align-items: flex-end; }
+
+.flex-cross-between {
+  -webkit-box-align: space-between;
+  -moz-flex-align: space-between;
+  -ms-flex-align: space-between;
+  -webkit-align-items: space-between;
+  -moz-align-items: space-between;
+  align-items: space-between; }
+
+.flex-cross-arount {
+  -webkit-box-align: space-around;
+  -moz-flex-align: space-around;
+  -ms-flex-align: space-around;
+  -webkit-align-items: space-around;
+  -moz-align-items: space-around;
+  align-items: space-around; }
+
+/**
+ * 设置排列满后是否自动换行
+ */
+.flex-wrap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+/**
+ * 设置元素在主轴上自动填充平均分布
+ */
+.flex-auto {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1; }
+
+.flex-reset-dir-start {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start; }
+
+.flex-reset-dir-center {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center; }
+
+.flex-reset-dir-end {
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end; }
+
+.flex-reset-dir-auto {
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  -ms-grid-row-align: auto;
+  align-self: auto; }
+
+@-webkit-keyframes bounceInLoop {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1); }
+  3% {
+    -webkit-transform: scale3d(0.95, 0.95, 0.95); }
+  6% {
+    -webkit-transform: scale3d(1, 1, 1); }
+  7% {
+    -webkit-transform: scale3d(0.98, 0.98, 0.98); }
+  10% {
+    -webkit-transform: scale3d(1, 1, 1); }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1); } }
+
+.bounceInLoop {
+  -webkit-animation-name: bounceInLoop;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: normal; }
+
+canvas {
+  border: 1px solid rgba(255, 0, 0, 0.5); }
+
+body {
+  background: #444; }
+
+.cg-list li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  height: 40px;
+  border-radius: 3px;
+  background: #ea5757;
+  color: white;
+  box-shadow: 2px 2px 5px #000000; }
