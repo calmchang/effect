@@ -13,13 +13,12 @@ var name = "Graphics";
 		console.log( name + "init by exports."+name);
 		exports[name] = factory();
 	}
-	else{
-		console.log( name + "init by window.nnCG."+name);
-		if( typeof root.nnCG === 'undefined' ){
-        root.nnCG={};
-    }
-    root.nnCG[name] = factory();
-	}
+	console.log( name + "init by window.nnCG."+name);
+	if( typeof root.nnCG === 'undefined' ){
+      root.nnCG={};
+  }
+  root.nnCG[name] = factory();
+
 })(this||window, function() {
 
 
@@ -28,9 +27,11 @@ var name = "Graphics";
 	Graphics.BlendMode.Transparent = 'destination-out';
 	Graphics.BlendMode.Normal = 'source-over';
 
-	Graphics.VCENTRE = (1<<0);
-	Graphics.HCENTRE = (1<<1);
-	
+	Graphics.VCENTRE = (1<<0);//垂直居中
+	Graphics.HCENTRE = (1<<1);//横向居中
+	Graphics.RIGHT = (1<<2);
+	Graphics.BOTTOM = (1<<3);
+
 	function Graphics(canvasDiv)
 	{
 		this.div = canvasDiv;
@@ -230,6 +231,48 @@ var name = "Graphics";
 		this.g.globalCompositeOperation = 'source-over';
 	};
 
+	Graphics.prototype.getImage = function(){
+		return this.div.toDataURL("image/jpeg");
+	};
+
+	Graphics.prototype.drawText = function(text,dx,dy,options){
+		if(typeof options === 'undefined' || options===null){options={};}
+
+		if( this.blendmode !== null )this.g.globalCompositeOperation = this.blendmode;
+		
+		if(options.shadow){
+			this.g.shadowBlur=10;
+			this.g.shadowColor=options.shadow.color;
+		}
+
+		var align="start";
+		this.g.textBaseline="top";
+		this.g.font=options.font||"20px Georgia";
+		this.g.fillStyle = (options.color)||"#000000";
+		this.g.fillText(text,dx,dy);
+
+
+
+		if(  typeof(options.anchor) !== 'undefined' && options.anchor !== null )
+		{
+			if( (options.anchor & Graphics.HCENTRE) !== 0 )
+			{
+				align="center";
+			}else if( (options.anchor & Graphics.RIGHT) !== 0 )
+			{
+				align="right";
+			}
+		}
+		this.g.textAlign=align;
+
+		if(options.stroke){
+			this.g.strokeStyle=options.stroke.color||"#000000";
+			this.g.strokeText(text,dx,dy);
+		}
+
+		this.g.globalCompositeOperation = 'source-over';
+
+	};
 
 	Graphics.prototype.changeColorImage = function(img, red,green,blue,alpha) {
 		var canvas = document.createElement('canvas');
