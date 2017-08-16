@@ -40,6 +40,9 @@ window.onload= function(){
 		else if( id=== 'cg2' ){
 			new CG2().go();
 		}
+		else if( id=== 'cg3' ){
+			new CG3().go();
+		}
 		console.log('click '+id);
 	};
 };
@@ -73,5 +76,28 @@ CG2.prototype.go = function(){
 	this.particle.loaded(function(){
 		self.particle.start(30);
 	});
+	
+};
+
+
+
+function CG3(){	
+	var Graphics = nnCG.Graphics;
+	var self=this;
+
+	var img = new Image();
+	
+	img.onload = function(){
+		self.gGraphics = new Graphics( document.getElementById( 'canvasCG3' ) );
+		self.gGraphics.drawImage(img,0,0,img.width,img.height);
+	};
+	img.src='image/btnOk.png';
+	
+}
+
+CG3.prototype.go = function(){
+	var self= this;
+	util.showDom('cg3Body');
+
 	
 };
